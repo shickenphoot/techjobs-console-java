@@ -63,12 +63,8 @@ public class TechJobs {
 
                 if (searchField.equals("all")) {
                     ArrayList<HashMap<String, String>> temp=new ArrayList<>();
-                    for(Map.Entry<String, String> J: columnChoices.entrySet()){
-                        if(J.getKey()!="all"){
-                           temp.addAll(JobData.findByColumnAndValue(J.getKey(), searchTerm));
-                        }
-                    }
-                    if(!temp.isEmpty()){
+                    temp.addAll(JobData.findByValue(searchTerm));
+                if(!temp.isEmpty()){
                         printJobs(temp);
                     }else{
                         System.out.println("Nothing Found");
@@ -125,6 +121,7 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
         for(HashMap<String, String> jobs: someJobs){
+            System.out.println("\n*****");
             for (Map.Entry<String, String> j : jobs.entrySet()) {
                 System.out.println(j.getKey() + ": " + j.getValue());
             }
